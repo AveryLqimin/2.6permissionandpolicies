@@ -2,8 +2,9 @@
 resource "aws_instance" "ec2" {
   ami           = "ami-00ca32bbc84273381"  
   instance_type = "t2.micro"
-  key_name      = "avery-dynamodb.pem"      
+  key_name      = "avery-dynamodb-ec2.pem"      
 
+  subnet_id               = "subnet-079c82f8b0060e6b7"
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   iam_instance_profile   = aws_iam_instance_profile.ec2_instance_profile.name
 }

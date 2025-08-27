@@ -54,6 +54,6 @@ resource "aws_iam_role_policy_attachment" "attach_policy" {
 
 # Instance Profile
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
-  name = "ec2_dynamodb_profile"
+  name = "avery_ec2_dynamodb"
   role = aws_iam_role.ec2_role.name
 }

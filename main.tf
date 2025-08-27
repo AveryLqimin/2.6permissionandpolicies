@@ -32,13 +32,51 @@ resource "aws_security_group" "ec2_sg" {
   }
 }
 
-resource "aws_dynamodb_table" "demo_table" {
-  name         = "demo-table"
+#from here
+
+resource "aws_dynamodb_table" "bookinventory" {
+  name         = "avery01-bookinventory"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "id"
+
+  hash_key  = "ISBN"
+  range_key = "Genre"
 
   attribute {
-    name = "id"
+    name = "ISBN"
     type = "S"
   }
+
+  attribute {
+    name = "Genre"
+    type = "S"
+  }
+}
+
+# Optional: populate with dummy data using aws_dynamodb_table_item
+resource "aws_dynamodb_table_item" "dummy1" {
+  table_name = aws_dynamodb_table.bookinventory.name
+  hash_key   = "ISBN"
+  range_key  = "Genre"
+  item       = <<ITEM
+{
+  "ISBN": {"S": "978-1234567890"},
+  "Genre": {"S": "Fiction"},
+  "Title": {"S": "Terraform Adventures"},
+  "Author": {"S": "Avery"}
+}
+ITEM
+}
+
+resource "aws_dynamodb_table_item" "dummy2" {
+  table_name = aws_dynamodb_table.bookinventory.name
+  hash_key   = "ISBN"
+  range_key  = "Genre"
+  item       = <<ITEM
+{
+  "ISBN": {"S": "978-0987654321"},
+  "Genre": {"S": "Non-Fiction"},
+  "Title": {"S": "Cloud Engineering 101"},
+  "Author": {"S": "Avery"}
+}
+ITEM
 }

@@ -3,5 +3,5 @@ output "ec2_public_ip" {
 }
 
 output "dynamodb_table_name" {
-  value = aws_dynamodb_table.demo_table.name
+  value = aws_dynamodb_table.bookinventory.name
 }

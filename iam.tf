@@ -52,7 +52,7 @@ resource "aws_iam_role_policy_attachment" "attach_policy" {
   policy_arn = aws_iam_policy.dynamodb_policy.arn
 }
 
-# Instance Profile
+# Instance Profile policies"
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
   name = "avery_ec2_dynamodb"
   role = aws_iam_role.ec2_role.name
